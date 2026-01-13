@@ -1,3 +1,12 @@
+## Understanding the Code
+
+The 8-byte buffer: We create a fixed-size buffer to read data in small chunks. This simulates how network data arrives — you never know when the next chunk will come.
+
+Partial line handling: When we encounter a newline character (`\n`), we know we’ve completed a line. But what if a line spans multiple chunks? We accumulate data in the `str` variable until we find a complete line.
+
+Error handling: The `Read()` method returns both the number of bytes read and an error. We handle EOF (End of File) gracefully by processing any remaining data.
+
+'''
 package main
 
 import (
@@ -55,3 +64,5 @@ func main() {
 
 	f.Close()
 }
+
+'''
